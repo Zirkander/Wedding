@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Wedding.Models
+namespace WeddingProj.Models
 {
     [NotMapped]
     public class LoginUser

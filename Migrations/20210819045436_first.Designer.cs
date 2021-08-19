@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Wedding.Models;
+using WeddingProj.Models;
 
-namespace Wedding.Migrations
+namespace WeddingProj.Migrations
 {
     [DbContext(typeof(WeddingContext))]
     [Migration("20210819045436_first")]

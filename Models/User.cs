@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Wedding.Models
+namespace WeddingProj.Models
 {
     public class User
     {
@@ -39,7 +39,7 @@ namespace Wedding.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        public List<Wedding> Weddings { get; set; }
+        public List<Wedding> CreatedWeddings { get; set; }
         public List<UserWeddingRSVP> RSVP { get; set; }
 
         public string FullName()

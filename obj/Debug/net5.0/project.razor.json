@@ -15654,6 +15654,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Coding Dojo\\C#\\Asp\\Wedding\\Views\\Wedding\\NewWedding.cshtml",
+      "TargetPath": "Views\\Wedding\\NewWedding.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Coding Dojo\\C#\\Asp\\Wedding\\Views\\Home\\_Login.cshtml",
       "TargetPath": "Views\\Home\\_Login.cshtml",
       "FileKind": "mvc"
@@ -15671,6 +15676,11 @@
     {
       "FilePath": "e:\\Coding Dojo\\C#\\Asp\\Wedding\\Views\\Home\\LoggedIn.cshtml",
       "TargetPath": "Views\\Home\\LoggedIn.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Coding Dojo\\C#\\Asp\\Wedding\\Views\\Wedding\\WeddingDetails.cshtml",
+      "TargetPath": "Views\\Wedding\\WeddingDetails.cshtml",
       "FileKind": "mvc"
     }
   ],

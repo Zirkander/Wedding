@@ -1,7 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Wedding.Models
+namespace WeddingProj.Models
 {
     public class Wedding
     {
@@ -30,6 +31,9 @@ namespace Wedding.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
+
+        public List<UserWeddingRSVP> RSVP { get; set; }
+
 
         public string WeddingName()
         {

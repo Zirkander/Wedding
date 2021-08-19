@@ -1,7 +1,7 @@
-using Wedding.Models;
+using WeddingProj.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Wedding.Models
+namespace WeddingProj.Models
 {
     public class WeddingContext : DbContext
     {

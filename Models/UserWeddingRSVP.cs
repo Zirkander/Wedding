@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Wedding.Models
+namespace WeddingProj.Models
 {
     public class UserWeddingRSVP
     {

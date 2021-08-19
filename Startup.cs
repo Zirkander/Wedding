@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Wedding.Models;
+using WeddingProj.Models;
 
-namespace Wedding
+namespace WeddingProj
 {
     public class Startup
     {

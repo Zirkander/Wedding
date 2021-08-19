@@ -5,12 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Wedding.Models;
+using WeddingProj.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 
 
-namespace Wedding.Controllers
+namespace WeddingProj.Controllers
 {
     public class HomeController : Controller
     {
@@ -71,7 +71,7 @@ namespace Wedding.Controllers
 
             HttpContext.Session.SetInt32("UserID", newUser.UserID);
             HttpContext.Session.SetString("FirstName", newUser.FirstName);
-            return RedirectToAction("All", "Wedding");
+            return RedirectToAction("WeddingDisplay", "Wedding");
 
         }
 
@@ -85,7 +85,7 @@ namespace Wedding.Controllers
 
             User dbUser = db.Users.FirstOrDefault(user => user.Email == loginUser.LoginEmail);
 
-            if (db.Users == null)
+            if (dbUser == null)
             {
                 ModelState.AddModelError("LoginError", "Email not found.");
                 return View("Index");
@@ -100,7 +100,7 @@ namespace Wedding.Controllers
             }
             HttpContext.Session.SetInt32("UserID", dbUser.UserID);
             HttpContext.Session.SetString("FirstName", dbUser.FirstName);
-            return View("All", "Wedding");
+            return RedirectToAction("WeddingDisplay", "Wedding");
         }
 
         [HttpPost("/logout")]

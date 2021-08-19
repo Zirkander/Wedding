@@ -51,3 +51,5 @@ E:\Coding Dojo\C#\Asp\Wedding\obj\Debug\net5.0\ref\Wedding.dll
 E:\Coding Dojo\C#\Asp\Wedding\obj\Debug\net5.0\Wedding.pdb
 E:\Coding Dojo\C#\Asp\Wedding\obj\Debug\net5.0\Wedding.genruntimeconfig.cache
 E:\Coding Dojo\C#\Asp\Wedding\obj\Debug\net5.0\Razor\Views\Wedding\All.cshtml.g.cs
+E:\Coding Dojo\C#\Asp\Wedding\obj\Debug\net5.0\Razor\Views\Wedding\NewWedding.cshtml.g.cs
+E:\Coding Dojo\C#\Asp\Wedding\obj\Debug\net5.0\Razor\Views\Wedding\WeddingDetails.cshtml.g.cs

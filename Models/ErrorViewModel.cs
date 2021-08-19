@@ -1,6 +1,6 @@
 using System;
 
-namespace Wedding.Models
+namespace WeddingProj.Models
 {
     public class ErrorViewModel
     {

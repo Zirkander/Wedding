@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Wedding.Migrations
+namespace WeddingProj.Migrations
 {
     public partial class first : Migration
     {

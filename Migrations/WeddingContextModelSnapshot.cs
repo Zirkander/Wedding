@@ -3,9 +3,9 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Wedding.Models;
+using WeddingProj.Models;
 
-namespace Wedding.Migrations
+namespace WeddingProj.Migrations
 {
     [DbContext(typeof(WeddingContext))]
     partial class WeddingContextModelSnapshot : ModelSnapshot

@@ -14,20 +14,27 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
 #line 1 "E:\Coding Dojo\C#\Asp\Wedding\Views\_ViewImports.cshtml"
-using Wedding;
+using WeddingProj;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 2 "E:\Coding Dojo\C#\Asp\Wedding\Views\_ViewImports.cshtml"
-using Wedding.Models;
+using WeddingProj.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "E:\Coding Dojo\C#\Asp\Wedding\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Http;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8e36c99e85704d0f2d1766f11d875a37c118a605", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a8ed3f45bb2d4924026e66eb79785b55f254b9ab", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1a5429d23852b415f07aba5d4c1a05e7b5f42473", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998
