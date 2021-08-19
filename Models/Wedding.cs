@@ -1,7 +1,34 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace Wedding.Models
 {
     public class Wedding
     {
+        [Key]
+        public int WeddingId { get; set; }
 
+        [Required(ErrorMessage = "Is required!")]
+        [MinLength(3, ErrorMessage = "Must be greater than 3!")]
+        [Display(Name = "Wedder1 Name")]
+        public string Wedder1Name { get; set; }
+
+        [Required(ErrorMessage = "Is required!")]
+        [MinLength(3, ErrorMessage = "Must be greater than 3!")]
+        [Display(Name = "Wedder2 Name")]
+        public string Wedder2Name { get; set; }
+
+        [Required(ErrorMessage = "Is required!")]
+        [MinLength(3, ErrorMessage = "Must be greater than 3!")]
+        [Display(Name = "Wedding Address")]
+        public string WeddingAddress { get; set; }
+
+        [Required(ErrorMessage = "Is required!")]
+        [DataType(DataType.Date)]
+        [Display(Name = "Wedding Date")]
+        public DateTime WeddingDate { get; set; }
+
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 }

@@ -43,7 +43,7 @@ namespace Wedding.Controllers
         {
             if (isLoggedIn)
             {
-                return RedirectToAction("LoggedIn");
+                return RedirectToAction("All", "Wedding");
             }
             return View("Index");
         }
@@ -71,7 +71,7 @@ namespace Wedding.Controllers
 
             HttpContext.Session.SetInt32("UserID", newUser.UserID);
             HttpContext.Session.SetString("FirstName", newUser.FirstName);
-            return RedirectToAction("LoggedIn");
+            return RedirectToAction("All", "Wedding");
 
         }
 
@@ -100,7 +100,7 @@ namespace Wedding.Controllers
             }
             HttpContext.Session.SetInt32("UserID", dbUser.UserID);
             HttpContext.Session.SetString("FirstName", dbUser.FirstName);
-            return View("LoggedIn");
+            return View("All", "Wedding");
         }
 
         [HttpPost("/logout")]
