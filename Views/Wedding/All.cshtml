@@ -1,3 +1,36 @@
-<div class="container">
-    <h1 class="text-center">Success!</h1>
-</div>
+@model List<Wedding>
+
+<body>
+    <div class="text-center">
+        <div>
+            <h4>Welcome to the Wedding Planner</h4>
+            <div>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Wedding</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Guests</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach (Wedding wed in Model)
+                            {
+                                <td>@wed.Wedder1Name + @wed.Wedder2Name</td>
+                                <td>@wed.WeddingDate</td>
+                                //#of people that have RSVP'd
+                                <td>@wed.WeddingId</td>
+                                <td><a href="">RSVP</a></td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

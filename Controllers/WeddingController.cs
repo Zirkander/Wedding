@@ -21,6 +21,11 @@ namespace Wedding.Controllers
             db = context;
         }
 
+        [HttpGet("/Wedding")]
+        public IActionResult WeddingDisplay()
+        {
+            return View("All");
+        }
 
     }
 }

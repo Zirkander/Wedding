@@ -30,5 +30,10 @@ namespace Wedding.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
+
+        public string WeddingName()
+        {
+            return Wedder1Name + " " + Wedder2Name;
+        }
     }
 }
