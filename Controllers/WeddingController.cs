@@ -47,7 +47,6 @@ namespace WeddingProj.Controllers
             //Wedding.Models.Wedding is because my project and namespace is the same name (Don't do this in the future.)
             List<Wedding> allWeddings = db.Weddings
             .Include(c => c.RSVP)
-            .ThenInclude(u => u.User)
             .ToList();
             return View("All", allWeddings);
         }
@@ -61,6 +60,11 @@ namespace WeddingProj.Controllers
         [HttpPost("/NewWedding")]
         public IActionResult NewWedding(Wedding newWedding)
         {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (ModelState.IsValid == false)
             {
                 return View("NewWedding");
@@ -70,7 +74,8 @@ namespace WeddingProj.Controllers
                 ModelState.AddModelError("Date", "Must be in the future!");
                 return View("NewWedding");
             }
-
+            User NewWedCreater = db.Users.FirstOrDefault(u => u.UserID == (int)uid);
+            newWedding.User = NewWedCreater;
             db.Add(newWedding);
             db.SaveChanges();
             return RedirectToAction("WeddingDisplay");
@@ -103,6 +108,45 @@ namespace WeddingProj.Controllers
 
             db.SaveChanges();
             return RedirectToAction("WeddingDisplay");
+        }
+
+        [HttpPost("Delete/{weddingId}/Delete")]
+        public IActionResult Delete(int weddingId)
+        {
+            Wedding wedding = db.Weddings.FirstOrDefault(w => w.WeddingId == weddingId);
+
+            if (wedding == null)
+            {
+                return RedirectToAction("WeddingDisplay");
+            }
+
+            db.Weddings.Remove(wedding);
+            db.SaveChanges();
+            return RedirectToAction("WeddingDisplay");
+        }
+
+        [HttpGet("/WeddingDetail/{weddingId}")]
+        public IActionResult WeddingDetail(int weddingId)
+        {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            Wedding wedding = db.Weddings
+            // .Include(u => u.User)
+            // .Include(u => u.RSVP)
+            // .ThenInclude(rsvp => rsvp.User)
+            .FirstOrDefault(w => w.WeddingId == weddingId);
+            Console.WriteLine(wedding);
+
+            if (wedding == null)
+            {
+                return RedirectToAction("WeddingDisplay");
+            }
+
+            return View("WeddingDetail", wedding);
+
         }
     }
 }

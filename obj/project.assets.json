@@ -793,9 +793,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Coding Dojo\\C#\\Asp\\Wedding\\Wedding.csproj",
-      "projectName": "Wedding",
-      "projectPath": "E:\\Coding Dojo\\C#\\Asp\\Wedding\\Wedding.csproj",
+      "projectUniqueName": "E:\\Coding Dojo\\C#\\Asp\\Wedding\\WeddingProj.csproj",
+      "projectName": "WeddingProj",
+      "projectPath": "E:\\Coding Dojo\\C#\\Asp\\Wedding\\WeddingProj.csproj",
       "packagesPath": "C:\\Users\\Zirkander\\.nuget\\packages\\",
       "outputPath": "E:\\Coding Dojo\\C#\\Asp\\Wedding\\obj\\",
       "projectStyle": "PackageReference",

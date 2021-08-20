@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WeddingProj.Migrations
 {
-    public partial class first : Migration
+    public partial class userId : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,17 +38,17 @@ namespace WeddingProj.Migrations
                     WeddingDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: true)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Weddings", x => x.WeddingId);
                     table.ForeignKey(
-                        name: "FK_Weddings_Users_UserID",
-                        column: x => x.UserID,
+                        name: "FK_Weddings_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,9 +90,9 @@ namespace WeddingProj.Migrations
                 column: "WeddingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Weddings_UserID",
+                name: "IX_Weddings_UserId",
                 table: "Weddings",
-                column: "UserID");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

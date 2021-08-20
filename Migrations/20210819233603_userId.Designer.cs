@@ -9,8 +9,8 @@ using WeddingProj.Models;
 namespace WeddingProj.Migrations
 {
     [DbContext(typeof(WeddingContext))]
-    [Migration("20210819045436_first")]
-    partial class first
+    [Migration("20210819233603_userId")]
+    partial class userId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,7 +19,7 @@ namespace WeddingProj.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.5");
 
-            modelBuilder.Entity("Wedding.Models.User", b =>
+            modelBuilder.Entity("WeddingProj.Models.User", b =>
                 {
                     b.Property<int>("UserID")
                         .ValueGeneratedOnAdd()
@@ -52,7 +52,7 @@ namespace WeddingProj.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Wedding.Models.UserWeddingRSVP", b =>
+            modelBuilder.Entity("WeddingProj.Models.UserWeddingRSVP", b =>
                 {
                     b.Property<int>("RSVPId")
                         .ValueGeneratedOnAdd()
@@ -79,7 +79,7 @@ namespace WeddingProj.Migrations
                     b.ToTable("RSVP");
                 });
 
-            modelBuilder.Entity("Wedding.Models.Wedding", b =>
+            modelBuilder.Entity("WeddingProj.Models.Wedding", b =>
                 {
                     b.Property<int>("WeddingId")
                         .ValueGeneratedOnAdd()
@@ -91,7 +91,7 @@ namespace WeddingProj.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("UserID")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Wedder1Name")
@@ -111,21 +111,21 @@ namespace WeddingProj.Migrations
 
                     b.HasKey("WeddingId");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Weddings");
                 });
 
-            modelBuilder.Entity("Wedding.Models.UserWeddingRSVP", b =>
+            modelBuilder.Entity("WeddingProj.Models.UserWeddingRSVP", b =>
                 {
-                    b.HasOne("Wedding.Models.User", "User")
+                    b.HasOne("WeddingProj.Models.User", "User")
                         .WithMany("RSVP")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Wedding.Models.Wedding", "Wedding")
-                        .WithMany()
+                    b.HasOne("WeddingProj.Models.Wedding", "Wedding")
+                        .WithMany("RSVP")
                         .HasForeignKey("WeddingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -135,18 +135,27 @@ namespace WeddingProj.Migrations
                     b.Navigation("Wedding");
                 });
 
-            modelBuilder.Entity("Wedding.Models.Wedding", b =>
+            modelBuilder.Entity("WeddingProj.Models.Wedding", b =>
                 {
-                    b.HasOne("Wedding.Models.User", null)
-                        .WithMany("Weddings")
-                        .HasForeignKey("UserID");
+                    b.HasOne("WeddingProj.Models.User", "User")
+                        .WithMany("CreatedWeddings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Wedding.Models.User", b =>
+            modelBuilder.Entity("WeddingProj.Models.User", b =>
+                {
+                    b.Navigation("CreatedWeddings");
+
+                    b.Navigation("RSVP");
+                });
+
+            modelBuilder.Entity("WeddingProj.Models.Wedding", b =>
                 {
                     b.Navigation("RSVP");
-
-                    b.Navigation("Weddings");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,15 @@
+@model Wedding
+
+<div style="display: flex; justify-content: space-between;">
+    <h2>@Model.Wedder1Name @Model.Wedder2Name Wedding!</h2>
+    <div>
+        <a href="">Dashboard</a><a href="">Log Out</a>
+    </div>
+</div>
+<div>Date: @Model.WeddingDate</div>
+
+<div>
+    <div>Guests:</div>
+    @* @foreach() *@
+    <p>@Model.User.FirstName @Model.User.LastName</p>
+</div>

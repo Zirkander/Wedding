@@ -21,23 +21,33 @@
                     <tbody>
                         @foreach (Wedding wed in Model)
                         {
-                            bool alreadyRSVP = wed.RSVP.Any(r => Context.Session.GetInt32("UserId") == r.UserId);
+                            bool alreadyRSVP = wed.RSVP.Any(r => Context.Session.GetInt32("UserID") == r.UserId);
                             <tr>
-                                <td>@wed.WeddingName()</td>
+                                <td><a asp-controller="Wedding" asp-action="WeddingDetail" asp-route-weddingId="@wed. WeddingId">@wed.WeddingName()</a></td>
                                 <td>@wed.WeddingDate</td>
                                 @* #of people that have RSVP'd *@
                                 <td>@wed.RSVP.Count</td>
                                 <td>
-                                    <form asp-controller="Wedding" asp-action="Rsvp" asp-route-weddingId="@wed.WeddingId">
-                                        @if (alreadyRSVP)
-                                        {
-                                            <button class="btn btn-link">Un-RSVP</button>
-                                        }
-                                        else
-                                        {
-                                            <button class="btn btn-link">RSVP</button>
-                                        }
-                                    </form>
+                                    @if (wed.UserId == Context.Session.GetInt32("UserID"))
+                                    {
+                                        <form asp-controller="Wedding" asp-action="Delete"
+                                    asp-route-weddingId="@wed.WeddingId" method="POST">
+                                            <button class="btn btn-outline-danger btn-link">Delete</button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form asp-controller="Wedding" asp-action="Rsvp" asp-route-weddingId="@wed.WeddingId">
+                                            @if (alreadyRSVP)
+                                            {
+                                                <button class="btn btn-link">Un-RSVP</button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn btn-link">RSVP</button>
+                                            }
+                                        </form>
+                                    }
                                 </td>
                             </tr>
                         }

@@ -34,10 +34,12 @@ namespace WeddingProj.Models
 
         public List<UserWeddingRSVP> RSVP { get; set; }
 
+        public int UserId { get; set; }
+        public User User { get; set; }
 
         public string WeddingName()
         {
-            return Wedder1Name + " " + Wedder2Name;
+            return Wedder1Name + " & " + Wedder2Name;
         }
     }
 }
