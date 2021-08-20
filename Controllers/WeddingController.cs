@@ -49,7 +49,7 @@ namespace WeddingProj.Controllers
 
             foreach (var wedding in allWeddings)
             {
-                if (wedding.WeddingDate < DateTime.Now)
+                if (wedding.WeddingDate <= DateTime.Now)
                 {
                     db.Weddings.Remove(wedding);
                     db.SaveChanges();
