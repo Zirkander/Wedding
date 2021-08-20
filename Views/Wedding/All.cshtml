@@ -8,8 +8,8 @@
     <div style="display: flex; justify-content: space-between;">
         <h2>Welcome to the Wedding Planner</h2>
         <div>
-            <a asp-controller="Wedding" asp-action="WeddingDisplay">Dashboard</a> | <a asp-controller="Home"
-                asp-action="Logout">Logout</a>
+            <a asp-controller="Wedding" asp-action="WeddingDisplay">Dashboard</a> | <form asp-controller="Home"
+                asp-action="Logout" method="POST"><button class="btn btn-link">Logout</button></form>
         </div>
     </div>
     <div>
