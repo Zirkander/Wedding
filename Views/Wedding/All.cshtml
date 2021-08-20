@@ -5,57 +5,62 @@
 
 
 <body>
-    <div class="text-center">
+    <div style="display: flex; justify-content: space-between;">
+        <h2>Welcome to the Wedding Planner</h2>
         <div>
-            <h4>Welcome to the Wedding Planner </h4>
-            <div>
-                <table class="table table-dark table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Wedding</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Guests</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (Wedding wed in Model)
-                        {
-                            bool alreadyRSVP = wed.RSVP.Any(r => Context.Session.GetInt32("UserID") == r.UserId);
-                            <tr>
-                                <td><a asp-controller="Wedding" asp-action="WeddingDetail" asp-route-weddingId="@wed. WeddingId">@wed.WeddingName()</a></td>
-                                <td>@wed.WeddingDate</td>
-                                @* #of people that have RSVP'd *@
-                                <td>@wed.RSVP.Count</td>
-                                <td>
-                                    @if (wed.UserId == Context.Session.GetInt32("UserID"))
+            <a asp-controller="Wedding" asp-action="WeddingDisplay">Dashboard</a> | <a asp-controller="Home"
+                asp-action="Logout">Logout</a>
+        </div>
+    </div>
+    <div>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Wedding</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Guests</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Wedding wed in Model)
+                {
+                    bool alreadyRSVP = wed.RSVP.Any(r => Context.Session.GetInt32("UserID") == r.UserId);
+                    <tr>
+                        <td><a asp-controller="Wedding" asp-action="WeddingDetails"
+                            asp-route-weddingId="@wed.WeddingId">@wed.WeddingName()</a></td>
+                        <td>@wed.WeddingDate.ToString("MMMM dd, yyyy")</td>
+                        @* #of people that have RSVP'd *@
+                        <td>@wed.RSVP.Count</td>
+                        <td>
+                            @if (wed.UserId == Context.Session.GetInt32("UserID"))
+                            {
+                                <form asp-controller="Wedding" asp-action="Delete" asp-route-weddingId="@wed.WeddingId"
+                            method="POST">
+                                    <button class="btn btn-outline-danger btn-link">Delete</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-controller="Wedding" asp-action="Rsvp" asp-route-weddingId="@wed.WeddingId">
+                                    @if (alreadyRSVP)
                                     {
-                                        <form asp-controller="Wedding" asp-action="Delete"
-                                    asp-route-weddingId="@wed.WeddingId" method="POST">
-                                            <button class="btn btn-outline-danger btn-link">Delete</button>
-                                        </form>
+                                        <button class="btn btn-link">Un-RSVP</button>
                                     }
                                     else
                                     {
-                                        <form asp-controller="Wedding" asp-action="Rsvp" asp-route-weddingId="@wed.WeddingId">
-                                            @if (alreadyRSVP)
-                                            {
-                                                <button class="btn btn-link">Un-RSVP</button>
-                                            }
-                                            else
-                                            {
-                                                <button class="btn btn-link">RSVP</button>
-                                            }
-                                        </form>
+                                        <button class="btn btn-link">RSVP</button>
                                     }
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-                <a href="/NewWedding">New Wedding</a>
-            </div>
-        </div>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="/NewWedding">New Wedding</a>
+    </div>
+    </div>
     </div>
 
 </body>

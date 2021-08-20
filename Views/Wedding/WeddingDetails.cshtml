@@ -1,15 +1,18 @@
 @model Wedding
 
 <div style="display: flex; justify-content: space-between;">
-    <h2>@Model.Wedder1Name @Model.Wedder2Name Wedding!</h2>
+    <h2>@Model.Wedder1Name and @Model.Wedder2Name's Wedding!</h2>
     <div>
-        <a href="">Dashboard</a><a href="">Log Out</a>
+        <a asp-controller="Wedding" asp-action="WeddingDisplay">Dashboard</a> | <a asp-controller="Home"
+            asp-action="Logout">Logout</a>
     </div>
 </div>
-<div>Date: @Model.WeddingDate</div>
+<div>Date: @Model.WeddingDate.ToString("MMMM dd, yyyy")</div>
 
 <div>
     <div>Guests:</div>
-    @* @foreach() *@
-    <p>@Model.User.FirstName @Model.User.LastName</p>
+    @foreach (var guest in Model.RSVP)
+    {
+        <p>@guest.User.FirstName @guest.User.LastName</p>
+    }
 </div>

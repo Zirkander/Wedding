@@ -1,6 +1,12 @@
 @model Wedding
 
-<h2>Plan Your Wedding!</h2>
+<div style="display: flex; justify-content: space-between;">
+    <h2>Plan Your Wedding!</h2>
+    <div>
+        <a asp-controller="Wedding" asp-action="WeddingDisplay">Dashboard</a> | <a asp-controller="Home"
+            asp-action="Logout">Logout</a>
+    </div>
+</div>
 <form asp-controller="Wedding" asp-action="NewWedding" method="POST">
     <div>
         <label asp-for="Wedder1Name">Wedder One: </label>

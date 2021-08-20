@@ -44,11 +44,23 @@ namespace WeddingProj.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+
+            List<Wedding> allWeddings = db.Weddings.ToList();
+
+            foreach (var wedding in allWeddings)
+            {
+                if (wedding.WeddingDate < DateTime.Now)
+                {
+                    db.Weddings.Remove(wedding);
+                    db.SaveChanges();
+                }
+            }
+
             //Wedding.Models.Wedding is because my project and namespace is the same name (Don't do this in the future.)
-            List<Wedding> allWeddings = db.Weddings
+            List<Wedding> newWeddings = db.Weddings
             .Include(c => c.RSVP)
             .ToList();
-            return View("All", allWeddings);
+            return View("All", newWeddings);
         }
 
         [HttpGet("/NewWedding")]
@@ -125,8 +137,8 @@ namespace WeddingProj.Controllers
             return RedirectToAction("WeddingDisplay");
         }
 
-        [HttpGet("/WeddingDetail/{weddingId}")]
-        public IActionResult WeddingDetail(int weddingId)
+        [HttpGet("/WeddingDetails/{weddingId}")]
+        public IActionResult WeddingDetails(int weddingId)
         {
             if (!isLoggedIn)
             {
@@ -134,9 +146,9 @@ namespace WeddingProj.Controllers
             }
 
             Wedding wedding = db.Weddings
+            .Include(guest => guest.RSVP)
             // .Include(u => u.User)
-            // .Include(u => u.RSVP)
-            // .ThenInclude(rsvp => rsvp.User)
+            .ThenInclude(rsvp => rsvp.User)
             .FirstOrDefault(w => w.WeddingId == weddingId);
             Console.WriteLine(wedding);
 
@@ -145,8 +157,63 @@ namespace WeddingProj.Controllers
                 return RedirectToAction("WeddingDisplay");
             }
 
-            return View("WeddingDetail", wedding);
+            return View("WeddingDetails", wedding);
 
         }
+
+        [HttpGet("/wedding/{weddingId}/edit")]
+        public IActionResult Edit(int weddingId)
+        {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            Wedding wedding = db.Weddings.FirstOrDefault(w => w.WeddingId == weddingId);
+
+            // The edit button will be hidden if you are not the author,
+            // but the user could still type the URL in manually, so
+            // prevent them from editing if they are not the author.
+            if (wedding == null || wedding.UserId != uid)
+            {
+                return RedirectToAction("All");
+            }
+
+            return View("Edit", wedding);
+        }
+
+        [HttpPost("/weddings/{weddingId}/update")]
+        public IActionResult Update(int weddingId, Wedding editedWedding)
+        {
+            if (ModelState.IsValid == false)
+            {
+                editedWedding.WeddingId = weddingId;
+                // Send back to the page with the current form edited data to
+                // display errors.
+                return View("Edit", editedWedding);
+            }
+
+            Wedding dbWedding = db.Weddings.FirstOrDefault(w => w.WeddingId == weddingId);
+
+            if (dbWedding == null)
+            {
+                return RedirectToAction("WeddingDisplay");
+            }
+
+            dbWedding.Wedder1Name = editedWedding.Wedder1Name;
+            dbWedding.Wedder2Name = editedWedding.Wedder2Name;
+            dbWedding.WeddingAddress = editedWedding.WeddingAddress;
+            dbWedding.UpdatedAt = DateTime.Now;
+
+            db.Weddings.Update(dbWedding);
+            db.SaveChanges();
+
+            /* 
+            When redirecting to action that has params, you need to pass in a
+            dict with keys that match param names and the value of the keys are
+            the values for the params.
+            */
+            return RedirectToAction("Details", new { weddingId = weddingId });
+        }
+
     }
 }
